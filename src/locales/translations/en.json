@@ -1,0 +1,8 @@
+{
+  "nav": {
+    "home": "Home",
+    "transaction": "Transaction",
+    "budget": "Budget",
+    "more": "More"
+  }
+}
