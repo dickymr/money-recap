@@ -4,5 +4,54 @@
     "transaction": "Transaction",
     "budget": "Budget",
     "more": "More"
+  },
+  "home": {
+    "title": "My Home"
+  },
+  "transaction": {
+    "title": "My Transaction"
+  },
+  "budget": {
+    "title": "My Budget"
+  },
+  "more": {
+    "title": "More Actions",
+    "list": {
+      "account": "Account",
+      "wallets": "Wallets",
+      "categories": "Categories",
+      "debts": "Debts",
+      "tools": "Tools",
+      "settings": "Settings",
+      "feedback": "Feedback",
+      "about": "About"
+    },
+    "account": {},
+    "wallets": {
+      "title": "My Wallets",
+      "basic": "Basic",
+      "saving": "Saving",
+      "archived": "Archived",
+      "choiceTitle": "Select Wallet Type",
+      "choiceSaving": "Saving",
+      "choiceSavingDesc": "A wallet for saving money",
+      "choiceBasic": "Basic",
+      "choiceBasicDesc": "A wallet for everyday use",
+      "add": {
+        "title": "Add Wallet",
+        "save": "SAVE",
+        "placeholderName": "Name",
+        "placeholderCurrency": "Currency",
+        "placeholderDescription": "Description",
+        "placeholderBalance": "Initial Balance",
+        "excludeReport": "Exclude from report?"
+      }
+    }
+  },
+  "helper": {
+    "iconPicker": {
+      "title": "Pick the icon",
+      "done": "Done"
+    }
   }
 }

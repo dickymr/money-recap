@@ -4,5 +4,54 @@
     "transaction": "Transaksi",
     "budget": "Anggaran",
     "more": "Lainnya"
+  },
+  "home": {
+    "title": "Beranda Saya"
+  },
+  "transaction": {
+    "title": "Transaksi Saya"
+  },
+  "budget": {
+    "title": "Anggaran Saya"
+  },
+  "more": {
+    "title": "Aksi Lainnya",
+    "list": {
+      "account": "Akun",
+      "wallets": "Dompet",
+      "categories": "Kategori",
+      "debts": "Hutang",
+      "tools": "Alat",
+      "settings": "Pengaturan",
+      "feedback": "Masukan",
+      "about": "Tentang"
+    },
+    "account": {},
+    "wallets": {
+      "title": "Dompet Saya",
+      "basic": "Dasar",
+      "saving": "Tabungan",
+      "archived": "Diarsipkan",
+      "choiceTitle": "Pilih Tipe Dompet",
+      "choiceSaving": "Tabungan",
+      "choiceSavingDesc": "Dompet untuk menabung uang",
+      "choiceBasic": "Dasar",
+      "choiceBasicDesc": "Dompet untuk penggunaan sehari-hari",
+      "add": {
+        "title": "Tambah Dompet",
+        "save": "SIMPAN",
+        "placeholderName": "Nama",
+        "placeholderCurrency": "Mata Uang",
+        "placeholderDescription": "Deskripsi",
+        "placeholderBalance": "Saldo Awal",
+        "excludeReport": "Kecualikan dari laporan?"
+      }
+    }
+  },
+  "helper": {
+    "iconPicker": {
+      "title": "Pilih ikon",
+      "done": "Selesai"
+    }
   }
 }

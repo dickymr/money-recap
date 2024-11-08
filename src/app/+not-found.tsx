@@ -1,9 +1,9 @@
-import { Text, View } from 'react-native';
+import { Text, View } from 'react-native-ui-lib';
 
 export default function NotFoundScreen() {
   return (
-    <View>
-      <Text>Not found</Text>
+    <View flex center>
+      <Text text70>Not found</Text>
     </View>
   );
 }

@@ -6,4 +6,31 @@ type NavItem = {
   icon: keyof typeof icons;
 };
 
-export { NavItem };
+type ActionRow = {
+  row: number;
+  items: {
+    text: string;
+    icon: keyof typeof icons;
+    path: string;
+  }[];
+};
+
+type Wallet = {
+  category: 'Basic' | 'Saving' | 'Archived';
+  total: number;
+  accounts: {
+    name: string;
+    balance: number;
+    icon: keyof typeof icons;
+    color?: string;
+  }[];
+};
+
+type WalletType = {
+  key: 'saving' | 'basic';
+  icon: keyof typeof icons;
+  label: string;
+  desc: string;
+};
+
+export { NavItem, ActionRow, Wallet, WalletType };

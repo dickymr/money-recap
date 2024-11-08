@@ -34,7 +34,6 @@ export default function TabLayout() {
   return (
     <Tabs
       screenOptions={{
-        headerShown: false,
         tabBarLabelPosition: 'below-icon',
         tabBarStyle: { height: 70 },
       }}
