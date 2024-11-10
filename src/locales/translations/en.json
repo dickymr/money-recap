@@ -46,12 +46,46 @@
         "placeholderBalance": "Initial Balance",
         "excludeReport": "Exclude from report?"
       }
+    },
+    "categories": {
+      "title": "My Categories",
+      "tab": {
+        "expense": "Expense",
+        "income": "Income"
+      },
+      "choiceTitle": "Select Category Type",
+      "choiceExpense": "Expense",
+      "choiceExpenseDesc": "E.g., groceries, transport",
+      "choiceIncome": "Income",
+      "choiceIncomeDesc": "E.g., salary, freelance",
+      "add": {
+        "title": "Add Category",
+        "save": "SAVE",
+        "placeholderName": "Name",
+        "placeholderType": "Type",
+        "placeholderParent": "Parent Category",
+        "expense": "Expense",
+        "income": "Income"
+      }
     }
   },
+
   "helper": {
     "iconPicker": {
       "title": "Pick the icon",
       "done": "Done"
+    },
+    "currencyPicker": {
+      "title": "Select a Currency",
+      "placeholderSearch": "Search for a currency"
+    },
+    "categoryTypePicker": {
+      "title": "Select a Category Type",
+      "placeholderSearch": "Search for a category type"
+    },
+    "parentCategoryPicker": {
+      "title": "Select a Parent Category",
+      "placeholderSearch": "Search for a parent category"
     }
   }
 }

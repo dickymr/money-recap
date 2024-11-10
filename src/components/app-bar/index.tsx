@@ -4,11 +4,18 @@ import { useNavigation } from 'expo-router';
 interface AppBarProps {
   title: string;
   align?: 'left' | 'center' | 'right';
+  shadowVisible?: boolean;
   sectionLeft?: () => JSX.Element;
   sectionRight?: () => JSX.Element;
 }
 
-const AppBar = ({ title, align = 'left', sectionLeft, sectionRight }: AppBarProps) => {
+const AppBar = ({
+  title,
+  align = 'left',
+  shadowVisible = true,
+  sectionLeft,
+  sectionRight,
+}: AppBarProps) => {
   const navigation = useNavigation();
 
   useEffect(() => {
@@ -16,6 +23,7 @@ const AppBar = ({ title, align = 'left', sectionLeft, sectionRight }: AppBarProp
       headerTitle: title,
       headerTitleAlign: align,
       headerTitleStyle: { fontSize: 18 },
+      headerShadowVisible: shadowVisible,
       headerRight: sectionRight,
       headerLeft: sectionLeft,
     });

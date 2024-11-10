@@ -8,6 +8,14 @@ const MoreLayout = () => {
         name="wallets-add"
         options={{ headerShown: true, animation: 'slide_from_right' }}
       />
+      <Stack.Screen
+        name="categories"
+        options={{ headerShown: true, animation: 'slide_from_right' }}
+      />
+      <Stack.Screen
+        name="categories-add"
+        options={{ headerShown: true, animation: 'slide_from_right' }}
+      />
     </Stack>
   );
 };

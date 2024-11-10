@@ -23,7 +23,7 @@
       "debts": "Hutang",
       "tools": "Alat",
       "settings": "Pengaturan",
-      "feedback": "Masukan",
+      "feedback": "Umpan Balik",
       "about": "Tentang"
     },
     "account": {},
@@ -32,9 +32,9 @@
       "basic": "Dasar",
       "saving": "Tabungan",
       "archived": "Diarsipkan",
-      "choiceTitle": "Pilih Tipe Dompet",
+      "choiceTitle": "Pilih Jenis Dompet",
       "choiceSaving": "Tabungan",
-      "choiceSavingDesc": "Dompet untuk menabung uang",
+      "choiceSavingDesc": "Dompet untuk menabung",
       "choiceBasic": "Dasar",
       "choiceBasicDesc": "Dompet untuk penggunaan sehari-hari",
       "add": {
@@ -44,14 +44,48 @@
         "placeholderCurrency": "Mata Uang",
         "placeholderDescription": "Deskripsi",
         "placeholderBalance": "Saldo Awal",
-        "excludeReport": "Kecualikan dari laporan?"
+        "excludeReport": "Keluarkan dari laporan?"
+      }
+    },
+    "categories": {
+      "title": "Kategori Saya",
+      "tab": {
+        "expense": "Pengeluaran",
+        "income": "Pemasukan"
+      },
+      "choiceTitle": "Pilih Jenis Kategori",
+      "choiceExpense": "Pengeluaran",
+      "choiceExpenseDesc": "Contoh: belanja, transportasi",
+      "choiceIncome": "Pemasukan",
+      "choiceIncomeDesc": "Contoh: gaji, freelance",
+      "add": {
+        "title": "Tambah Kategori",
+        "save": "SIMPAN",
+        "placeholderName": "Nama",
+        "placeholderType": "Jenis",
+        "placeholderParent": "Kategori Induk",
+        "expense": "Pengeluaran",
+        "income": "Pemasukan"
       }
     }
   },
+
   "helper": {
     "iconPicker": {
-      "title": "Pilih ikon",
+      "title": "Pilih Ikon",
       "done": "Selesai"
+    },
+    "currencyPicker": {
+      "title": "Pilih Mata Uang",
+      "placeholderSearch": "Cari mata uang"
+    },
+    "categoryTypePicker": {
+      "title": "Pilih Jenis Kategori",
+      "placeholderSearch": "Cari jenis kategori"
+    },
+    "parentCategoryPicker": {
+      "title": "Pilih Kategori Induk",
+      "placeholderSearch": "Cari kategori induk"
     }
   }
 }

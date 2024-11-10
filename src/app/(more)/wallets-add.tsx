@@ -35,16 +35,8 @@ interface Currency {
 }
 
 export const currencies: Currency[] = [
-  { label: 'USD', value: 'USD' },
-  { label: 'EUR', value: 'EUR' },
-  { label: 'JPY', value: 'JPY' },
-  { label: 'GBP', value: 'GBP' },
-  { label: 'AUD', value: 'AUD' },
-  { label: 'CAD', value: 'CAD' },
-  { label: 'CHF', value: 'CHF' },
-  { label: 'CNY', value: 'CNY' },
-  { label: 'SEK', value: 'SEK' },
   { label: 'IDR', value: 'IDR' },
+  { label: 'USD', value: 'USD' },
 ];
 
 export default function WalletAddScreen() {
@@ -103,9 +95,7 @@ export default function WalletAddScreen() {
       <View marginB-10>
         <View height={80} row centerV paddingH-20 bg-$backgroundElevated>
           <Incubator.ExpandableOverlay
-            modalProps={{
-              animationType: 'slide',
-            }}
+            modalProps={{ animationType: 'slide' }}
             expandableContent={
               <IconPicker
                 currentColor={formData.backgroundColor}
@@ -129,7 +119,6 @@ export default function WalletAddScreen() {
               <Icon name={formData.icon} color={Colors.$textDefault} size={22.5} />
             </Button>
           </Incubator.ExpandableOverlay>
-
           <TextField
             style={{ ...Typography.text40M }}
             containerStyle={{ flex: 1 }}
@@ -144,19 +133,16 @@ export default function WalletAddScreen() {
       {/* CURRENCY */}
       <View marginB-10>
         <Picker
-          enableModalBlur={false}
-          topBarProps={{ title: 'Currencies' }}
-          showSearch
-          searchPlaceholder={'Search a currency'}
-          searchStyle={{ color: Colors.blue30, placeholderTextColor: Colors.grey50 }}
-          onChange={(item) => handleClickCurrency(String(item))}
-          value={formData.currency}
           items={currencies}
+          topBarProps={{ title: locales.t('helper.currencyPicker.title') }}
+          value={formData.currency}
+          onChange={(item) => handleClickCurrency(String(item))}
+          enableModalBlur={false}
           renderInput={() => (
             <ListItem height={55} activeOpacity={0.5}>
               <View style={[Dividers.d10]} flex row centerV bg-$backgroundElevated paddingH-25>
                 <View width={30} height={30} center marginR-15>
-                  <Icon name="DollarSign" color={Colors.$textNeutralLight} size={25} />
+                  <Icon name="DollarSign" color={Colors.$textNeutralLight} size={20} />
                 </View>
                 <View flex-1>
                   <Text
