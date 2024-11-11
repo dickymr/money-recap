@@ -69,8 +69,10 @@ export default function CategoryAddScreen() {
   const list = formData.type === 'expense' ? listExpense : listIncome;
 
   const parentCategories = list.map((item) => ({
-    label: item.name,
     value: item.name,
+    label: item.name,
+    icon: item.icon,
+    color: item.color,
   }));
 
   return (
@@ -170,6 +172,33 @@ export default function CategoryAddScreen() {
           value={formData.parent}
           onChange={(item) => handleClickParent(item as string)}
           enableModalBlur={false}
+          renderItem={(value) => {
+            const category = parentCategories.find((item) => item.value === value);
+            return (
+              <View style={[Dividers.d10]} row height={65} centerV paddingH-30>
+                <View row flex-1>
+                  <View
+                    width={30}
+                    height={30}
+                    backgroundColor={category?.color}
+                    center
+                    br100
+                    marginR-15
+                  >
+                    <Icon
+                      name={category?.icon || 'Airplay'}
+                      color={Colors.$textDefault}
+                      size={17.5}
+                    />
+                  </View>
+                  <Text text70>{value}</Text>
+                </View>
+                {formData.parent === category?.value && (
+                  <Icon name="Check" color={Colors.$textPrimary} size={22.5} />
+                )}
+              </View>
+            );
+          }}
           renderInput={() => (
             <ListItem height={55} activeOpacity={0.5}>
               <View style={[Dividers.d10]} flex row centerV bg-$backgroundElevated paddingH-25>

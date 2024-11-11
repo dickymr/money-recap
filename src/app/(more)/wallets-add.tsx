@@ -1,4 +1,4 @@
-import { router, useLocalSearchParams, useRouter } from 'expo-router';
+import { useState } from 'react';
 import {
   View,
   Text,
@@ -17,7 +17,9 @@ import { icons } from 'lucide-react-native';
 import locales from '@/locales';
 
 import { AppBar, Icon, IconPicker } from '@/components';
-import { useEffect, useState } from 'react';
+
+import { currencies } from '@/constants/dummies';
+import { Currency } from '@/constants/types';
 
 interface FormData {
   name: string;
@@ -28,16 +30,6 @@ interface FormData {
   balance: number;
   excludeFromReport: boolean;
 }
-
-interface Currency {
-  label: string;
-  value: string;
-}
-
-export const currencies: Currency[] = [
-  { label: 'IDR', value: 'IDR' },
-  { label: 'USD', value: 'USD' },
-];
 
 export default function WalletAddScreen() {
   const handleClickCurrency = (currency: string) => {
@@ -61,18 +53,6 @@ export default function WalletAddScreen() {
     balance: 0,
     excludeFromReport: false,
   });
-
-  const { backgroundColor: bgColorParam, icon: iconParam } = useLocalSearchParams();
-
-  useEffect(() => {
-    if (typeof bgColorParam === 'string') {
-      handleChangeFormData('backgroundColor', bgColorParam);
-    }
-
-    if (typeof iconParam === 'string' && icons.hasOwnProperty(iconParam)) {
-      handleChangeFormData('icon', iconParam);
-    }
-  }, [bgColorParam, iconParam]);
 
   return (
     <>
@@ -136,8 +116,26 @@ export default function WalletAddScreen() {
           items={currencies}
           topBarProps={{ title: locales.t('helper.currencyPicker.title') }}
           value={formData.currency}
-          onChange={(item) => handleClickCurrency(String(item))}
+          onChange={(value) => handleClickCurrency(String(value))}
           enableModalBlur={false}
+          renderItem={(value) => {
+            const currency: Currency | undefined = currencies.find(
+              (item) => item.value === value
+            );
+            return (
+              <View style={[Dividers.d10]} row height={65} centerV paddingH-30>
+                <View row flex-1>
+                  <View marginR-15>
+                    <Text text60>{currency?.flag}</Text>
+                  </View>
+                  <Text text70>{currency?.label}</Text>
+                </View>
+                {formData.currency === currency?.value && (
+                  <Icon name="Check" color={Colors.$textPrimary} size={22.5} />
+                )}
+              </View>
+            );
+          }}
           renderInput={() => (
             <ListItem height={55} activeOpacity={0.5}>
               <View style={[Dividers.d10]} flex row centerV bg-$backgroundElevated paddingH-25>
@@ -150,7 +148,7 @@ export default function WalletAddScreen() {
                     color={formData.currency ? Colors.$textDefault : Colors.$textNeutralLight}
                   >
                     {formData.currency
-                      ? formData.currency
+                      ? formData.currency.toUpperCase()
                       : locales.t('more.wallets.add.placeholderCurrency')}
                   </Text>
                 </View>

@@ -1,4 +1,9 @@
-import { Category, Wallet } from '@/constants/types';
+import { Currency, Wallet, Category } from '@/constants/types';
+
+export const currencies: Currency[] = [
+  { label: 'IDR', value: 'idr', flag: '🇮🇩' },
+  { label: 'USD', value: 'usd', flag: '🇺🇸' },
+];
 
 const wallets: Wallet[] = [
   {

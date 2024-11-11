@@ -15,6 +15,12 @@ type ActionRow = {
   }[];
 };
 
+type Currency = {
+  label: string;
+  value: string;
+  flag: string;
+};
+
 type Wallet = {
   category: 'Basic' | 'Saving' | 'Archived';
   total: number;
@@ -51,4 +57,4 @@ type CategoryType = {
   desc: string;
 };
 
-export { NavItem, ActionRow, Wallet, WalletType, Category, CategoryType };
+export { NavItem, ActionRow, Currency, Wallet, WalletType, Category, CategoryType };
