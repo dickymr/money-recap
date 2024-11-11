@@ -38,8 +38,8 @@ const walletTypes: WalletType[] = [
 ];
 
 export default function WalletScreen() {
-  const handlePressItem = (name: string) => {
-    alert(`You clicked ${name}`);
+  const handlePressItem = (id: number) => {
+    router.push({ pathname: '/wallets/[id]', params: { id } });
   };
 
   const handleClickAdd = () => {
@@ -48,7 +48,7 @@ export default function WalletScreen() {
 
   const handleClickDialogItem = (type: 'saving' | 'basic') => {
     setShowDialog(false);
-    router.push({ pathname: '/wallets-add', params: { type } });
+    router.push({ pathname: '/wallets/[id]', params: { id: type } });
   };
 
   const renderItem = ({ category, total, accounts }: Wallet) => {
@@ -76,12 +76,12 @@ export default function WalletScreen() {
             )}
           </View>
         </ListItem>
-        {accounts.map(({ name, balance, icon, color }, idx) => (
+        {accounts.map(({ id, name, balance, icon, color }) => (
           <ListItem
-            key={idx}
+            key={id}
             height={70}
             activeOpacity={0.5}
-            onPress={() => handlePressItem(name)}
+            onPress={() => handlePressItem(id)}
           >
             <View style={[Dividers.d10]} flex row centerV bg-$backgroundElevated paddingH-20>
               <View width={40} height={40} center backgroundColor={color} br100 marginR-15>

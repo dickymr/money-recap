@@ -38,8 +38,9 @@
       "choiceBasic": "Basic",
       "choiceBasicDesc": "A wallet for everyday use",
       "add": {
-        "title": "Add Wallet",
+        "title": "Wallet",
         "save": "SAVE",
+        "edit": "EDIT",
         "placeholderName": "Name",
         "placeholderCurrency": "Currency",
         "placeholderDescription": "Description",

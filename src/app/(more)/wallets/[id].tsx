@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useLocalSearchParams } from 'expo-router';
 import {
   View,
   Text,
@@ -18,12 +19,12 @@ import locales from '@/locales';
 
 import { AppBar, Icon, IconPicker } from '@/components';
 
-import { currencies } from '@/constants/dummies';
+import { currencies, wallets } from '@/constants/dummies';
 import { Currency } from '@/constants/types';
 
 interface FormData {
   name: string;
-  backgroundColor: string;
+  color: string;
   icon: keyof typeof icons;
   currency: string;
   description: string;
@@ -31,12 +32,17 @@ interface FormData {
   excludeFromReport: boolean;
 }
 
-export default function WalletAddScreen() {
+export default function WalletDetailScreen() {
   const handleClickCurrency = (currency: string) => {
     handleChangeFormData('currency', currency);
   };
 
   const handleSubmit = () => {
+    if (mode === 'view') {
+      setMode('edit');
+      return;
+    }
+
     alert(JSON.stringify(formData));
   };
 
@@ -44,15 +50,41 @@ export default function WalletAddScreen() {
     setFormData((prev) => ({ ...prev, [key]: value }));
   };
 
+  const determineMode = () => {
+    if (id === 'basic' || id === 'saving') return 'add';
+    return 'view';
+  };
+
+  const { id } = useLocalSearchParams();
+
+  const [mode, setMode] = useState(determineMode());
   const [formData, setFormData] = useState<FormData>({
     name: '',
-    backgroundColor: Colors.red30,
+    color: Colors.red30,
     icon: 'Wallet',
     currency: '',
     description: '',
     balance: 0,
     excludeFromReport: false,
   });
+
+  useEffect(() => {
+    const account = wallets
+      .flatMap((wallet) => wallet.accounts)
+      .find((account) => account.id === Number(id));
+
+    if (!account) return;
+
+    setFormData({
+      ...formData,
+      name: account.name,
+      icon: account.icon,
+      color: String(account.color),
+      currency: account.currency,
+      description: account.description,
+      excludeFromReport: account.excludeFromReport,
+    });
+  }, []);
 
   return (
     <>
@@ -65,7 +97,7 @@ export default function WalletAddScreen() {
             onPress={handleSubmit}
           >
             <Text color={Colors.$textNeutral} text80H>
-              {locales.t('more.wallets.add.save')}
+              {locales.t(mode === 'view' ? 'more.wallets.add.edit' : 'more.wallets.add.save')}
             </Text>
           </Button>
         )}
@@ -75,10 +107,11 @@ export default function WalletAddScreen() {
       <View marginB-10>
         <View height={80} row centerV paddingH-20 bg-$backgroundElevated>
           <Incubator.ExpandableOverlay
+            disabled={mode === 'view'}
             modalProps={{ animationType: 'slide' }}
             expandableContent={
               <IconPicker
-                currentColor={formData.backgroundColor}
+                currentColor={formData.color}
                 currentIcon={formData.icon}
                 onColorChanged={(color) => handleChangeFormData('backgroundColor', color)}
                 onIconChanged={(icon) => handleChangeFormData('icon', icon)}
@@ -91,7 +124,7 @@ export default function WalletAddScreen() {
             }}
           >
             <Button
-              backgroundColor={formData.backgroundColor}
+              backgroundColor={formData.color}
               size={Button.sizes.large}
               round
               marginR-15
@@ -100,8 +133,10 @@ export default function WalletAddScreen() {
             </Button>
           </Incubator.ExpandableOverlay>
           <TextField
+            readOnly={mode === 'view'}
             style={{ ...Typography.text40M }}
             containerStyle={{ flex: 1 }}
+            color={mode === 'view' ? Colors.$textNeutral : Colors.$textDefault}
             placeholder={String(locales.t('more.wallets.add.placeholderName'))}
             placeholderTextColor={Colors.$textNeutralLight}
             onChangeText={(value) => handleChangeFormData('name', value)}
@@ -111,7 +146,7 @@ export default function WalletAddScreen() {
       </View>
 
       {/* CURRENCY */}
-      <View marginB-10>
+      <View style={{ pointerEvents: mode === 'view' ? 'none' : 'auto' }} marginB-10>
         <Picker
           items={currencies}
           topBarProps={{ title: locales.t('helper.currencyPicker.title') }}
@@ -145,7 +180,13 @@ export default function WalletAddScreen() {
                 <View flex-1>
                   <Text
                     text70
-                    color={formData.currency ? Colors.$textDefault : Colors.$textNeutralLight}
+                    color={
+                      mode === 'view'
+                        ? Colors.$textNeutral
+                        : formData.currency
+                        ? Colors.$textDefault
+                        : Colors.$textNeutralLight
+                    }
                   >
                     {formData.currency
                       ? formData.currency.toUpperCase()
@@ -165,8 +206,10 @@ export default function WalletAddScreen() {
             <Icon name="Notebook" color={Colors.$textNeutralLight} size={20} />
           </View>
           <TextField
+            readOnly={mode === 'view'}
             style={{ ...Typography.text70 }}
             containerStyle={{ flex: 1 }}
+            color={mode === 'view' ? Colors.$textNeutral : Colors.$textDefault}
             placeholder={String(locales.t('more.wallets.add.placeholderDescription'))}
             placeholderTextColor={Colors.$textNeutralLight}
             onChangeText={(value) => handleChangeFormData('description', value)}
@@ -182,9 +225,11 @@ export default function WalletAddScreen() {
             <Icon name="ChartNoAxesColumn" color={Colors.$textNeutralLight} size={20} />
           </View>
           <TextField
+            readOnly={mode === 'view'}
             keyboardType="numeric"
             style={{ ...Typography.text70 }}
             containerStyle={{ flex: 1 }}
+            color={mode === 'view' ? Colors.$textNeutral : Colors.$textDefault}
             floatingPlaceholder
             floatOnFocus={true}
             placeholder={String(locales.t('more.wallets.add.placeholderBalance'))}
@@ -217,6 +262,14 @@ export default function WalletAddScreen() {
           />
           <View width={30} height={30} center marginR-15>
             <Switch
+              disabled={mode === 'view'}
+              disabledColor={
+                Colors[
+                  formData.excludeFromReport
+                    ? '$backgroundPrimaryMedium'
+                    : '$backgroundPrimaryLight'
+                ]
+              }
               offColor={Colors.$backgroundPrimaryLight}
               onColor={Colors.$backgroundPrimaryMedium}
               thumbStyle={{

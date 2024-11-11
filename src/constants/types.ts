@@ -25,10 +25,14 @@ type Wallet = {
   category: 'Basic' | 'Saving' | 'Archived';
   total: number;
   accounts: {
+    id: number;
     name: string;
-    balance: number;
     icon: keyof typeof icons;
-    color?: string;
+    color: string;
+    currency: string;
+    description: string;
+    balance: number;
+    excludeFromReport: boolean;
   }[];
 };
 

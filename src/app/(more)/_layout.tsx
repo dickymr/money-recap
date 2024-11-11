@@ -3,9 +3,9 @@ import { Stack } from 'expo-router';
 const MoreLayout = () => {
   return (
     <Stack>
-      <Stack.Screen name="wallets" options={{ headerShown: true }} />
+      <Stack.Screen name="wallets/index" options={{ headerShown: true }} />
       <Stack.Screen
-        name="wallets-add"
+        name="wallets/[id]"
         options={{ headerShown: true, animation: 'slide_from_right' }}
       />
       <Stack.Screen
