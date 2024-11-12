@@ -19,6 +19,7 @@ const wallets: Wallet[] = [
         description: 'Recehan',
         balance: 250000,
         excludeFromReport: true,
+        isArchived: false,
       },
       {
         id: 2,
@@ -29,6 +30,7 @@ const wallets: Wallet[] = [
         description: '',
         balance: 250000,
         excludeFromReport: false,
+        isArchived: false,
       },
       {
         id: 3,
@@ -39,6 +41,7 @@ const wallets: Wallet[] = [
         currency: 'idr',
         description: '',
         excludeFromReport: false,
+        isArchived: false,
       },
       {
         id: 4,
@@ -49,6 +52,7 @@ const wallets: Wallet[] = [
         currency: 'idr',
         description: '',
         excludeFromReport: false,
+        isArchived: false,
       },
     ],
   },
@@ -65,6 +69,7 @@ const wallets: Wallet[] = [
         description: '',
         balance: 250000,
         excludeFromReport: false,
+        isArchived: false,
       },
       {
         id: 6,
@@ -75,6 +80,7 @@ const wallets: Wallet[] = [
         description: '',
         balance: 250000,
         excludeFromReport: false,
+        isArchived: false,
       },
       {
         id: 7,
@@ -85,6 +91,7 @@ const wallets: Wallet[] = [
         description: '',
         balance: 250000,
         excludeFromReport: false,
+        isArchived: false,
       },
       {
         id: 8,
@@ -95,6 +102,7 @@ const wallets: Wallet[] = [
         currency: 'idr',
         description: '',
         excludeFromReport: false,
+        isArchived: false,
       },
       {
         id: 9,
@@ -105,6 +113,7 @@ const wallets: Wallet[] = [
         currency: 'idr',
         description: '',
         excludeFromReport: false,
+        isArchived: false,
       },
     ],
   },
@@ -121,6 +130,7 @@ const wallets: Wallet[] = [
         description: '',
         balance: 250000,
         excludeFromReport: false,
+        isArchived: false,
       },
       {
         id: 11,
@@ -131,6 +141,7 @@ const wallets: Wallet[] = [
         currency: 'idr',
         description: '',
         excludeFromReport: false,
+        isArchived: false,
       },
       {
         id: 12,
@@ -141,6 +152,7 @@ const wallets: Wallet[] = [
         description: '',
         balance: 250000,
         excludeFromReport: false,
+        isArchived: false,
       },
       {
         id: 13,
@@ -151,6 +163,7 @@ const wallets: Wallet[] = [
         description: '',
         balance: 250000,
         excludeFromReport: false,
+        isArchived: false,
       },
       {
         id: 14,
@@ -161,6 +174,7 @@ const wallets: Wallet[] = [
         currency: 'idr',
         description: '',
         excludeFromReport: false,
+        isArchived: false,
       },
       {
         id: 15,
@@ -171,6 +185,7 @@ const wallets: Wallet[] = [
         currency: 'idr',
         description: '',
         excludeFromReport: false,
+        isArchived: false,
       },
     ],
   },

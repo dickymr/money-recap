@@ -33,6 +33,7 @@ type Wallet = {
     description: string;
     balance: number;
     excludeFromReport: boolean;
+    isArchived: boolean;
   }[];
 };
 

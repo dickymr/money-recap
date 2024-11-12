@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useLocalSearchParams } from 'expo-router';
+import { router, useLocalSearchParams } from 'expo-router';
 import {
   View,
   Text,
@@ -12,6 +12,8 @@ import {
   Switch,
   Picker,
   Incubator,
+  Dialog,
+  Constants,
 } from 'react-native-ui-lib';
 import { icons } from 'lucide-react-native';
 
@@ -30,6 +32,7 @@ interface FormData {
   description: string;
   balance: number;
   excludeFromReport: boolean;
+  isArchived: boolean;
 }
 
 export default function WalletDetailScreen() {
@@ -37,12 +40,21 @@ export default function WalletDetailScreen() {
     handleChangeFormData('currency', currency);
   };
 
-  const handleSubmit = () => {
-    if (mode === 'view') {
-      setMode('edit');
-      return;
+  const handleClickDelete = (type: string) => {
+    if (type === 'confirm') {
+      setModalDeleteShown(true);
     }
 
+    if (type === 'cancel') {
+      setModalDeleteShown(false);
+    }
+
+    if (type === 'delete') {
+      router.back();
+    }
+  };
+
+  const handleClickSave = () => {
     alert(JSON.stringify(formData));
   };
 
@@ -52,12 +64,11 @@ export default function WalletDetailScreen() {
 
   const determineMode = () => {
     if (id === 'basic' || id === 'saving') return 'add';
-    return 'view';
+    return 'edit';
   };
 
   const { id } = useLocalSearchParams();
 
-  const [mode, setMode] = useState(determineMode());
   const [formData, setFormData] = useState<FormData>({
     name: '',
     color: Colors.red30,
@@ -66,7 +77,11 @@ export default function WalletDetailScreen() {
     description: '',
     balance: 0,
     excludeFromReport: false,
+    isArchived: false,
   });
+  const [modalDeleteShown, setModalDeleteShown] = useState<boolean>(false);
+
+  const mode = determineMode();
 
   useEffect(() => {
     const account = wallets
@@ -82,24 +97,35 @@ export default function WalletDetailScreen() {
       color: String(account.color),
       currency: account.currency,
       description: account.description,
+      balance: account.balance,
       excludeFromReport: account.excludeFromReport,
+      isArchived: account.isArchived,
     });
   }, []);
 
   return (
     <>
       <AppBar
-        title={locales.t('more.wallets.add.title')}
+        title={
+          mode === 'add'
+            ? locales.t('more.wallets.detail.titleAdd')
+            : locales.t('more.wallets.detail.titleEdit')
+        }
         sectionRight={() => (
-          <Button
-            backgroundColor={Colors.$backgroundPrimaryMedium}
-            size={Button.sizes.xSmall}
-            onPress={handleSubmit}
-          >
-            <Text color={Colors.$textNeutral} text80H>
-              {locales.t(mode === 'view' ? 'more.wallets.add.edit' : 'more.wallets.add.save')}
-            </Text>
-          </Button>
+          <View row>
+            <Button
+              backgroundColor={Colors.$backgroundPrimary}
+              size={Button.sizes.xSmall}
+              onPress={handleClickSave}
+              paddingV-7
+              paddingH-12
+            >
+              <Icon name="Save" color={Colors.$textDefaultLight} size={15} />
+              <Text text90BO uppercase $textDefaultLight marginL-5>
+                {locales.t('more.wallets.detail.save')}
+              </Text>
+            </Button>
+          </View>
         )}
       />
 
@@ -107,7 +133,6 @@ export default function WalletDetailScreen() {
       <View marginB-10>
         <View height={80} row centerV paddingH-20 bg-$backgroundElevated>
           <Incubator.ExpandableOverlay
-            disabled={mode === 'view'}
             modalProps={{ animationType: 'slide' }}
             expandableContent={
               <IconPicker
@@ -133,11 +158,10 @@ export default function WalletDetailScreen() {
             </Button>
           </Incubator.ExpandableOverlay>
           <TextField
-            readOnly={mode === 'view'}
             style={{ ...Typography.text40M }}
             containerStyle={{ flex: 1 }}
-            color={mode === 'view' ? Colors.$textNeutral : Colors.$textDefault}
-            placeholder={String(locales.t('more.wallets.add.placeholderName'))}
+            color={Colors.$textDefault}
+            placeholder={String(locales.t('more.wallets.detail.placeholderName'))}
             placeholderTextColor={Colors.$textNeutralLight}
             onChangeText={(value) => handleChangeFormData('name', value)}
             value={formData.name}
@@ -146,10 +170,15 @@ export default function WalletDetailScreen() {
       </View>
 
       {/* CURRENCY */}
-      <View style={{ pointerEvents: mode === 'view' ? 'none' : 'auto' }} marginB-10>
+      <View marginB-10>
         <Picker
           items={currencies}
-          topBarProps={{ title: locales.t('helper.currencyPicker.title') }}
+          topBarProps={{
+            title: locales.t('helper.currencyPicker.title'),
+            cancelButtonProps: {
+              iconStyle: { tintColor: Colors.$textDefault, marginLeft: 5 },
+            },
+          }}
           value={formData.currency}
           onChange={(value) => handleClickCurrency(String(value))}
           enableModalBlur={false}
@@ -163,7 +192,9 @@ export default function WalletDetailScreen() {
                   <View marginR-15>
                     <Text text60>{currency?.flag}</Text>
                   </View>
-                  <Text text70>{currency?.label}</Text>
+                  <Text text70 $textDefault>
+                    {currency?.label}
+                  </Text>
                 </View>
                 {formData.currency === currency?.value && (
                   <Icon name="Check" color={Colors.$textPrimary} size={22.5} />
@@ -175,22 +206,16 @@ export default function WalletDetailScreen() {
             <ListItem height={55} activeOpacity={0.5}>
               <View style={[Dividers.d10]} flex row centerV bg-$backgroundElevated paddingH-25>
                 <View width={30} height={30} center marginR-15>
-                  <Icon name="DollarSign" color={Colors.$textNeutralLight} size={20} />
+                  <Icon name="DollarSign" color={Colors.$textNeutral} size={20} />
                 </View>
                 <View flex-1>
                   <Text
                     text70
-                    color={
-                      mode === 'view'
-                        ? Colors.$textNeutral
-                        : formData.currency
-                        ? Colors.$textDefault
-                        : Colors.$textNeutralLight
-                    }
+                    color={formData.currency ? Colors.$textDefault : Colors.$textNeutralLight}
                   >
                     {formData.currency
                       ? formData.currency.toUpperCase()
-                      : locales.t('more.wallets.add.placeholderCurrency')}
+                      : locales.t('more.wallets.detail.placeholderCurrency')}
                   </Text>
                 </View>
               </View>
@@ -203,14 +228,13 @@ export default function WalletDetailScreen() {
       <View height={55} marginB-10>
         <View style={[Dividers.d10]} flex row centerV bg-$backgroundElevated paddingH-25>
           <View width={30} height={30} center marginR-15>
-            <Icon name="Notebook" color={Colors.$textNeutralLight} size={20} />
+            <Icon name="Notebook" color={Colors.$textNeutral} size={20} />
           </View>
           <TextField
-            readOnly={mode === 'view'}
             style={{ ...Typography.text70 }}
             containerStyle={{ flex: 1 }}
-            color={mode === 'view' ? Colors.$textNeutral : Colors.$textDefault}
-            placeholder={String(locales.t('more.wallets.add.placeholderDescription'))}
+            color={Colors.$textDefault}
+            placeholder={String(locales.t('more.wallets.detail.placeholderDescription'))}
             placeholderTextColor={Colors.$textNeutralLight}
             onChangeText={(value) => handleChangeFormData('description', value)}
             value={formData.description}
@@ -222,17 +246,22 @@ export default function WalletDetailScreen() {
       <View height={55} marginB-10>
         <View style={[Dividers.d10]} flex row centerV bg-$backgroundElevated paddingH-25>
           <View width={30} height={30} center marginR-15>
-            <Icon name="ChartNoAxesColumn" color={Colors.$textNeutralLight} size={20} />
+            <Icon name="ChartNoAxesColumn" color={Colors.$textNeutral} size={20} />
           </View>
           <TextField
-            readOnly={mode === 'view'}
             keyboardType="numeric"
             style={{ ...Typography.text70 }}
             containerStyle={{ flex: 1 }}
-            color={mode === 'view' ? Colors.$textNeutral : Colors.$textDefault}
+            color={Colors.$textDefault}
             floatingPlaceholder
             floatOnFocus={true}
-            placeholder={String(locales.t('more.wallets.add.placeholderBalance'))}
+            placeholder={String(
+              locales.t(
+                `more.wallets.detail.placeholder${
+                  mode === 'add' ? 'Initial' : 'Current'
+                }Balance`
+              )
+            )}
             placeholderTextColor={Colors.$textNeutralLight}
             onChangeText={(text) =>
               handleChangeFormData('balance', text === '' ? 0 : Number(text))
@@ -243,7 +272,7 @@ export default function WalletDetailScreen() {
       </View>
 
       {/* EXCLUDE FROM REPORT */}
-      <View height={55}>
+      <View height={55} marginB-10>
         <View
           style={[Dividers.d10]}
           flex
@@ -256,33 +285,117 @@ export default function WalletDetailScreen() {
           <TextField
             readOnly
             containerStyle={{ flex: 1 }}
-            placeholder={String(locales.t('more.wallets.add.excludeReport'))}
-            placeholderTextColor={Colors.$textNeutral}
+            placeholder={String(locales.t('more.wallets.detail.excludeReport'))}
+            placeholderTextColor={Colors.$textDefault}
             style={{ ...Typography.text70 }}
           />
           <View width={30} height={30} center marginR-15>
             <Switch
-              disabled={mode === 'view'}
-              disabledColor={
-                Colors[
-                  formData.excludeFromReport
-                    ? '$backgroundPrimaryMedium'
-                    : '$backgroundPrimaryLight'
-                ]
-              }
-              offColor={Colors.$backgroundPrimaryLight}
-              onColor={Colors.$backgroundPrimaryMedium}
-              thumbStyle={{
-                backgroundColor: formData.excludeFromReport
-                  ? Colors.$textNeutralLight
-                  : Colors.$textDisabled,
-              }}
+              offColor={Colors.$backgroundPrimaryMedium}
+              onColor={Colors.$backgroundPrimaryHeavy}
+              thumbStyle={{ backgroundColor: Colors.$backgroundDefault }}
               onValueChange={(value) => handleChangeFormData('excludeFromReport', value)}
               value={formData.excludeFromReport}
             />
           </View>
         </View>
       </View>
+
+      {/* ARCHIVE */}
+      <View style={{ display: mode === 'add' ? 'none' : 'flex' }} height={55} marginB-5>
+        <View
+          style={[Dividers.d10]}
+          flex
+          row
+          centerV
+          bg-$backgroundElevated
+          paddingL-30
+          paddingR-10
+        >
+          <TextField
+            readOnly
+            containerStyle={{ flex: 1 }}
+            placeholder={String(locales.t('more.wallets.detail.archiveWallet'))}
+            placeholderTextColor={Colors.$textDefault}
+            style={{ ...Typography.text70 }}
+          />
+          <View width={30} height={30} center marginR-15>
+            <Switch
+              offColor={Colors.$backgroundPrimaryMedium}
+              onColor={Colors.$backgroundPrimaryHeavy}
+              thumbStyle={{ backgroundColor: Colors.$backgroundDefault }}
+              onValueChange={(value) => handleChangeFormData('isArchived', value)}
+              value={formData.isArchived}
+            />
+          </View>
+        </View>
+      </View>
+
+      {/* DELETE BUTTON */}
+      <View style={{ display: mode === 'add' ? 'none' : 'flex' }} height={55} marginB-10>
+        <View flex row center>
+          <Button
+            backgroundColor="transparent"
+            size={Button.sizes.xSmall}
+            onPress={() => handleClickDelete('confirm')}
+          >
+            <Icon name="Trash2" color={Colors.$iconDanger} size={17.5} />
+            <Text text80BO uppercase $textDanger marginL-5>
+              {locales.t('more.wallets.detail.delete')}
+            </Text>
+          </Button>
+        </View>
+      </View>
+
+      {/* CONFIRM DELETE */}
+      <Dialog
+        useSafeArea
+        center
+        height="22.5%"
+        panDirection="down"
+        containerStyle={{
+          backgroundColor: Colors.$backgroundElevated,
+          borderRadius: 12,
+          marginBottom: Constants.isIphoneX ? 0 : 20,
+        }}
+        overlayBackgroundColor="rgba(0, 0, 0, 0.5)"
+        ignoreBackgroundPress={false}
+        visible={modalDeleteShown}
+        onDismiss={() => setModalDeleteShown(false)}
+      >
+        <View flex-1 paddingH-25 paddingV-5>
+          <View left marginT-17 marginB-10>
+            <Text text70BO $textDefault>
+              {locales.t('more.wallets.detail.modalDeleteTitle')}
+            </Text>
+          </View>
+          <View marginB-10>
+            <Text text80 $textNeutral>
+              {locales.t('more.wallets.detail.modalDeleteDescription')}
+            </Text>
+          </View>
+          <View row absB absR marginB-17 marginR-15>
+            <Button
+              backgroundColor="transparent"
+              size={Button.sizes.xSmall}
+              onPress={() => handleClickDelete('cancel')}
+            >
+              <Text text70R uppercase $textDefault>
+                {locales.t('more.wallets.detail.modalDeleteNo')}
+              </Text>
+            </Button>
+            <Button
+              backgroundColor="transparent"
+              size={Button.sizes.xSmall}
+              onPress={() => handleClickDelete('delete')}
+            >
+              <Text text70BL uppercase $textDanger>
+                {locales.t('more.wallets.detail.modalDeleteYes')}
+              </Text>
+            </Button>
+          </View>
+        </View>
+      </Dialog>
     </>
   );
 }
