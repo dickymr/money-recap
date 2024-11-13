@@ -15,35 +15,6 @@ type ActionRow = {
   }[];
 };
 
-type Currency = {
-  label: string;
-  value: string;
-  flag: string;
-};
-
-type Wallet = {
-  category: 'Basic' | 'Saving' | 'Archived';
-  total: number;
-  accounts: {
-    id: number;
-    name: string;
-    icon: keyof typeof icons;
-    color: string;
-    currency: string;
-    description: string;
-    balance: number;
-    excludeFromReport: boolean;
-    isArchived: boolean;
-  }[];
-};
-
-type WalletType = {
-  key: 'saving' | 'basic';
-  icon: keyof typeof icons;
-  label: string;
-  desc: string;
-};
-
 type Category = {
   name: string;
   icon: keyof typeof icons;
@@ -62,4 +33,4 @@ type CategoryType = {
   desc: string;
 };
 
-export { NavItem, ActionRow, Currency, Wallet, WalletType, Category, CategoryType };
+export { NavItem, ActionRow, Category, CategoryType };
