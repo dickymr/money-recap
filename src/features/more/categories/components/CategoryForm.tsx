@@ -126,7 +126,6 @@ const CategoryForm = ({ mode, form, setForm }: WalletFormProps) => {
                     floatOnFocus={true}
                     placeholder={String(locales.t('more.categories.detail.placeholderType'))}
                     placeholderTextColor={Colors.$textNeutralLight}
-                    floatingPlaceholderStyle={{ ...Typography.text90R }}
                     value={form.type}
                   />
                 </View>
@@ -194,7 +193,6 @@ const CategoryForm = ({ mode, form, setForm }: WalletFormProps) => {
                     floatOnFocus={true}
                     placeholder={String(locales.t('more.categories.detail.placeholderParent'))}
                     placeholderTextColor={Colors.$textNeutralLight}
-                    floatingPlaceholderStyle={{ ...Typography.text90R }}
                     value={form.parent}
                   />
                 </View>
