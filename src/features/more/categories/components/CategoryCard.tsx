@@ -19,7 +19,11 @@ const CategoryCard = ({ id, name, color, icon, children }: CategoryCardProps) =>
       <ListItem height={70} activeOpacity={0.5} onPress={() => handlePressItem(id)}>
         <View style={[Dividers.d10]} flex row centerV bg-$backgroundElevated paddingH-20>
           <View width={40} height={40} center backgroundColor={color} br100 marginR-15>
-            <Icon name={icon} color={Colors.$textDefault} size={22.5} />
+            <Icon
+              name={icon}
+              color={Colors.isDark(color) ? Colors.$textDefaultLight : Colors.$textDefault}
+              size={22.5}
+            />
           </View>
           <View>
             <Text text80BO $textDefault>

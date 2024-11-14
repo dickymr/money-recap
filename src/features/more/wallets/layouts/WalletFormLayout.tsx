@@ -85,6 +85,7 @@ const WalletFormLayout = () => {
         )}
       />
 
+      {/* FORM */}
       <WalletForm mode={mode} form={form} setForm={setForm} />
 
       {/* DELETE BUTTON */}

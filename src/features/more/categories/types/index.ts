@@ -13,10 +13,30 @@ type CategoryType = {
   icon: keyof typeof icons;
   color: string;
   type: 'expense' | 'income';
+  children: CategoryType[];
 };
 
 type CategoriesType = CategoryType & {
   children: CategoryType[];
 };
 
-export { CategoryTypeType, CategoryType, CategoriesType };
+type CategoryFormType = {
+  name: string;
+  backgroundIcon: string;
+  icon: keyof typeof icons;
+  type: 'expense' | 'income';
+  parent: string;
+};
+
+type CategoryTypePickerType = {
+  label: string;
+  value: string;
+};
+
+export {
+  CategoryTypeType,
+  CategoryType,
+  CategoriesType,
+  CategoryFormType,
+  CategoryTypePickerType,
+};

@@ -1,6 +1,6 @@
 import locales from '@/locales';
 
-import { CategoryTypeType } from '../types';
+import { CategoryTypeType, CategoryTypePickerType } from '../types';
 
 const categoryTypes: CategoryTypeType[] = [
   {
@@ -17,4 +17,9 @@ const categoryTypes: CategoryTypeType[] = [
   },
 ];
 
-export { categoryTypes };
+const categoryTypesPicker: CategoryTypePickerType[] = [
+  { label: locales.t('more.categories.detail.expense'), value: 'expense' },
+  { label: locales.t('more.categories.detail.income'), value: 'income' },
+];
+
+export { categoryTypes, categoryTypesPicker };
