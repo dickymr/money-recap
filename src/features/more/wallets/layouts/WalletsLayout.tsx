@@ -3,9 +3,8 @@ import { View } from 'react-native-ui-lib';
 
 import locales from '@/locales';
 
-import { AppBar } from '@/components';
+import { AppBar, FloatingButton } from '@/components';
 
-import FloatingButton from '../components/FloatingButton';
 import DialogWalletTypeSelection from '../components/DialogWalletTypeSelection';
 import WalletCardList from '../components/WalletCardList';
 

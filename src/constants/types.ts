@@ -15,22 +15,4 @@ type ActionRow = {
   }[];
 };
 
-type Category = {
-  name: string;
-  icon: keyof typeof icons;
-  color: string;
-  children: {
-    name: string;
-    icon: keyof typeof icons;
-    color: string;
-  }[];
-};
-
-type CategoryType = {
-  key: 'expense' | 'income';
-  icon: keyof typeof icons;
-  label: string;
-  desc: string;
-};
-
-export { NavItem, ActionRow, Category, CategoryType };
+export { NavItem, ActionRow };

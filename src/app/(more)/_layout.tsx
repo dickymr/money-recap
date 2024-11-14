@@ -9,11 +9,11 @@ const MoreLayout = () => {
         options={{ headerShown: true, animation: 'slide_from_right' }}
       />
       <Stack.Screen
-        name="categories"
+        name="categories/index"
         options={{ headerShown: true, animation: 'slide_from_right' }}
       />
       <Stack.Screen
-        name="categories-add"
+        name="categories/[id]"
         options={{ headerShown: true, animation: 'slide_from_right' }}
       />
     </Stack>
