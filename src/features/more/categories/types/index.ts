@@ -13,7 +13,7 @@ type CategoryType = {
   icon: keyof typeof icons;
   color: string;
   type: 'expense' | 'income';
-  children: CategoryType[];
+  children?: CategoryType[];
 };
 
 type CategoriesType = CategoryType & {
