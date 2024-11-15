@@ -5,6 +5,10 @@ import WalletCard from '../components/WalletCard';
 import { wallets } from '../mocks';
 
 const WalletCardList = () => {
+  const totalItems = wallets.reduce((count, wallet) => {
+    return count + 1 + (wallet.accounts ? wallet.accounts.length : 0);
+  }, 0);
+
   return (
     <FlashList
       data={wallets}
@@ -16,7 +20,7 @@ const WalletCardList = () => {
           accounts={item.accounts}
         />
       )}
-      estimatedItemSize={5}
+      estimatedItemSize={totalItems}
     />
   );
 };

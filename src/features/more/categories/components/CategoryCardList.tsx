@@ -9,6 +9,10 @@ type CategoryFormLayoutProps = {
 };
 
 const CategoryCardList = ({ data }: CategoryFormLayoutProps) => {
+  const totalItems = data.reduce((count, category) => {
+    return count + 1 + (category.children ? category.children.length : 0);
+  }, 0);
+
   return (
     <FlashList
       data={data}
@@ -23,7 +27,7 @@ const CategoryCardList = ({ data }: CategoryFormLayoutProps) => {
           children={item.children}
         />
       )}
-      estimatedItemSize={5}
+      estimatedItemSize={totalItems}
     />
   );
 };
