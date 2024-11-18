@@ -1,5 +1,5 @@
-import ToolsLayout from '~/src/features/more/tools/layouts/ToolsLayout';
+import ToolsLayout from '@/features/more/tools/layouts/ToolsLayout';
 
-export default function SettingsScreen() {
+export default function ToolsScreen() {
   return <ToolsLayout />;
 }

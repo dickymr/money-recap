@@ -26,7 +26,9 @@
       "feedback": "Feedback",
       "about": "About"
     },
-    "account": {},
+    "account": {
+      "title": "My Account"
+    },
     "wallets": {
       "title": "My Wallets",
       "basic": "Basic",
@@ -83,6 +85,9 @@
         "income": "Income"
       }
     },
+    "debts": {
+      "title": "My Debts"
+    },
     "tools": {
       "title": "Tools",
       "exportCsv": "Export CSV File",
@@ -98,6 +103,12 @@
       "placeholderDateFormat": "Date format",
       "placeholderFirstDayOfWeek": "First day of the week",
       "placeholderFirstDayOfMonth": "First day of the month"
+    },
+    "feedback": {
+      "title": "Feedback"
+    },
+    "about": {
+      "title": "About"
     }
   },
   "helper": {
