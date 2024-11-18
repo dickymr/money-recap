@@ -83,6 +83,12 @@
         "income": "Income"
       }
     },
+    "tools": {
+      "title": "Tools",
+      "exportCsv": "Export CSV File",
+      "importCsv": "Import CSV File",
+      "template": "Template"
+    },
     "settings": {
       "title": "Settings",
       "placeholderLanguage": "Language",

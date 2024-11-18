@@ -17,6 +17,10 @@ const MoreLayout = () => {
         options={{ headerShown: true, animation: 'slide_from_right' }}
       />
       <Stack.Screen
+        name="tools/index"
+        options={{ headerShown: true, animation: 'slide_from_right' }}
+      />
+      <Stack.Screen
         name="settings/index"
         options={{ headerShown: true, animation: 'slide_from_right' }}
       />
