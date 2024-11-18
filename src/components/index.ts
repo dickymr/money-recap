@@ -1,6 +1,6 @@
-import AppBar from './app-bar';
-import Icon from './icon';
-import IconPicker from './icon-picker';
+import AppBar from './AppBar';
+import Icon from './Icon';
+import IconPicker from './IconPicker';
 import FloatingButton from './FloatingButton';
 
 export { AppBar, Icon, IconPicker, FloatingButton };
