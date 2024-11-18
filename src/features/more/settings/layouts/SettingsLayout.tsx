@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Text, View } from 'react-native-ui-lib';
+import { View } from 'react-native-ui-lib';
 
 import locales from '@/locales';
 
