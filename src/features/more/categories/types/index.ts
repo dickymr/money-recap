@@ -28,15 +28,4 @@ type CategoryFormType = {
   parent: string;
 };
 
-type CategoryTypePickerType = {
-  label: string;
-  value: string;
-};
-
-export {
-  CategoryTypeType,
-  CategoryType,
-  CategoriesType,
-  CategoryFormType,
-  CategoryTypePickerType,
-};
+export { CategoryTypeType, CategoryType, CategoriesType, CategoryFormType };

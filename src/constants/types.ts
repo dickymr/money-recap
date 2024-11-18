@@ -15,4 +15,9 @@ type ActionRow = {
   }[];
 };
 
-export { NavItem, ActionRow };
+type PickerType = {
+  label: string;
+  value: string;
+};
+
+export { NavItem, ActionRow, PickerType };

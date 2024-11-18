@@ -16,6 +16,10 @@ const MoreLayout = () => {
         name="categories/[id]"
         options={{ headerShown: true, animation: 'slide_from_right' }}
       />
+      <Stack.Screen
+        name="settings/index"
+        options={{ headerShown: true, animation: 'slide_from_right' }}
+      />
     </Stack>
   );
 };

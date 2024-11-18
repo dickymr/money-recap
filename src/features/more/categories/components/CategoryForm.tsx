@@ -21,13 +21,13 @@ import { categories } from '../mocks';
 
 import { CategoryFormType } from '../types';
 
-type WalletFormProps = {
+type CategoryFormProps = {
   mode: 'add' | 'edit';
   form: CategoryFormType;
   setForm: React.Dispatch<React.SetStateAction<CategoryFormType>>;
 };
 
-const CategoryForm = ({ mode, form, setForm }: WalletFormProps) => {
+const CategoryForm = ({ mode, form, setForm }: CategoryFormProps) => {
   const handleClickType = (type: string) => {
     updateForm('parent', '-');
     updateForm('type', type);

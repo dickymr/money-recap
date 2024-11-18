@@ -82,17 +82,50 @@
         "expense": "Expense",
         "income": "Income"
       }
+    },
+    "settings": {
+      "title": "Settings",
+      "placeholderLanguage": "Language",
+      "placeholderTheme": "Theme",
+      "placeholderDefaultCurrency": "Default currency",
+      "placeholderCurrencyFormat": "Currency format",
+      "placeholderDateFormat": "Date format",
+      "placeholderFirstDayOfWeek": "First day of the week",
+      "placeholderFirstDayOfMonth": "First day of the month"
     }
   },
-
   "helper": {
     "iconPicker": {
       "title": "Pick the icon",
       "done": "Done"
     },
+    "languagePicker": {
+      "title": "Select a Language",
+      "placeholderSearch": "Search for a language"
+    },
+    "themePicker": {
+      "title": "Select a Theme",
+      "placeholderSearch": "Search for a theme"
+    },
     "currencyPicker": {
       "title": "Select a Currency",
       "placeholderSearch": "Search for a currency"
+    },
+    "currencyFormatPicker": {
+      "title": "Select a currency format",
+      "placeholderSearch": "Search for a currency format"
+    },
+    "dateFormatPicker": {
+      "title": "Select a date format",
+      "placeholderSearch": "Search for a date format"
+    },
+    "firstDayOfWeekPicker": {
+      "title": "Select a first day of week",
+      "placeholderSearch": "Search for a first day of week"
+    },
+    "firstDayOfMonthPicker": {
+      "title": "Select a first day of month",
+      "placeholderSearch": "Search for a first day of month"
     },
     "categoryTypePicker": {
       "title": "Select a Category Type",
@@ -102,5 +135,17 @@
       "title": "Select a Parent Category",
       "placeholderSearch": "Search for a parent category"
     }
+  },
+  "general": {
+    "default": "Default",
+    "light": "Light",
+    "dark": "Dark",
+    "sunday": "Sunday",
+    "monday": "Monday",
+    "tuesday": "Tuesday",
+    "wednesday": "Wednesday",
+    "thursday": "Thursday",
+    "friday": "Friday",
+    "saturday": "Saturday"
   }
 }
