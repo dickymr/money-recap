@@ -312,7 +312,7 @@ const SettingCardList = ({ setting, setSetting }: SettingCardListProps) => {
                 </View>
                 <View flex-1 centerV>
                   <TextField
-                    style={{ ...Typography.text60R }}
+                    style={{ ...Typography.text60R, textTransform: 'capitalize' }}
                     containerStyle={{ flex: 1, justifyContent: 'center', paddingBottom: 2.5 }}
                     floatingPlaceholder
                     floatOnFocus={true}
