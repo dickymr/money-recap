@@ -158,6 +158,7 @@
     "income": "Income",
     "expense": "Expense",
     "balance": "Balance",
+    "empty": "Empty",
     "default": "Default",
     "light": "Light",
     "dark": "Dark",
