@@ -1,6 +1,6 @@
 import locales from '@/locales';
 
-import { PickerType } from '@/constants/types';
+import { PickerType } from '@/types';
 
 import { CategoryTypeType } from '../types';
 

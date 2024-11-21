@@ -1,17 +1,17 @@
 {
   "nav": {
     "home": "Home",
-    "transaction": "Transaction",
-    "budget": "Budget",
+    "transactions": "Transaction",
+    "budgets": "Budget",
     "more": "More"
   },
   "home": {
     "title": "My Home"
   },
-  "transaction": {
+  "transactions": {
     "title": "My Transaction"
   },
-  "budget": {
+  "budgets": {
     "title": "My Budget"
   },
   "more": {
@@ -154,6 +154,10 @@
     }
   },
   "general": {
+    "future": "Future",
+    "income": "Income",
+    "expense": "Expense",
+    "balance": "Balance",
     "default": "Default",
     "light": "Light",
     "dark": "Dark",

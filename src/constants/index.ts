@@ -1,5 +1,30 @@
 import { icons } from 'lucide-react-native';
 
+import { NavItem } from '../types';
+
+const navItems: NavItem[] = [
+  {
+    name: 'index',
+    title: 'nav.home',
+    icon: 'House',
+  },
+  {
+    name: 'transactions',
+    title: 'nav.transactions',
+    icon: 'ArrowRightLeft',
+  },
+  {
+    name: 'budgets',
+    title: 'nav.budgets',
+    icon: 'ChartPie',
+  },
+  {
+    name: 'more',
+    title: 'nav.more',
+    icon: 'Ellipsis',
+  },
+];
+
 const backgroundIconList: Array<string> = [
   '#4682B4', // Steel Blue
   '#5F9EA0', // Cadet Blue
@@ -89,4 +114,4 @@ const iconList: Array<keyof typeof icons> = [
   'Clipboard',
 ];
 
-export { backgroundIconList, iconList };
+export { navItems, backgroundIconList, iconList };

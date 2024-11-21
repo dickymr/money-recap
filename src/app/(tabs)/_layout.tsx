@@ -5,30 +5,8 @@ import { Tabs } from 'expo-router';
 import locales from '@/locales';
 
 import { Icon } from '@/components';
-import { NavItem } from '@/constants/types';
 
-const navItems: NavItem[] = [
-  {
-    name: 'index',
-    title: 'nav.home',
-    icon: 'House',
-  },
-  {
-    name: 'transaction',
-    title: 'nav.transaction',
-    icon: 'ArrowRightLeft',
-  },
-  {
-    name: 'budget',
-    title: 'nav.budget',
-    icon: 'ChartPie',
-  },
-  {
-    name: 'more',
-    title: 'nav.more',
-    icon: 'Ellipsis',
-  },
-];
+import { navItems } from '@/constants';
 
 export default function TabLayout() {
   return (

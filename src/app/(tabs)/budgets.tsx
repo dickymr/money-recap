@@ -7,10 +7,10 @@ import { AppBar } from '@/components';
 export default function BudgetScreen() {
   return (
     <>
-      <AppBar title={locales.t('budget.title')} />
+      <AppBar title={locales.t('budgets.title')} />
       <View flex center>
         <Text text60 $textPrimary>
-          {locales.t('budget.title')}
+          {locales.t('budgets.title')}
         </Text>
       </View>
     </>

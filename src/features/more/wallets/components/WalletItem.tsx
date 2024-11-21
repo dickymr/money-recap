@@ -2,7 +2,7 @@ import { Colors, Dividers, ListItem, Text, View } from 'react-native-ui-lib';
 
 import { Icon } from '@/components';
 
-import { formatCurrency } from '../utils';
+import { formatCurrency } from '@/utils';
 
 import { WalletItemType } from '../types';
 

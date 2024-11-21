@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useNavigation } from 'expo-router';
 
 interface AppBarProps {
-  title: string;
+  title: string | (() => JSX.Element);
   align?: 'left' | 'center' | 'right';
   shadowVisible?: boolean;
   sectionLeft?: () => JSX.Element;

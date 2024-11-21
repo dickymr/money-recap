@@ -4,11 +4,11 @@ import { Dividers, ListItem, Text, View } from 'react-native-ui-lib';
 
 import locales from '@/locales';
 
+import { formatCurrency } from '@/utils';
+
 import WalletItem from './WalletItem';
 
 import { WalletCardType } from '../types';
-
-import { formatCurrency } from '../utils';
 
 const WalletCard = ({ category, total, accounts }: WalletCardType) => {
   const handlePressItem = (id: number) => {
