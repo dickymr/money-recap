@@ -45,7 +45,7 @@ const Tab = ({ filterSectionShown }: TabProps) => {
       return (
         <View flex center>
           <Text $textDefault text70>
-            Empty
+            {locales.t('general.empty')}
           </Text>
         </View>
       );
@@ -94,7 +94,7 @@ const Tab = ({ filterSectionShown }: TabProps) => {
         )}
       />
       <View
-        style={{ display: isCurrentPeriode ? 'none' : 'flex' }}
+        style={{ display: isCurrentPeriode ? 'none' : 'flex', zIndex: 1 }}
         absR
         absT
         marginT-30
