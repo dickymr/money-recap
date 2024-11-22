@@ -39,7 +39,10 @@
     },
     "extra": {
       "eas": {
-        "projectId": "17372618-45d2-43ae-97b6-30697d00247f"
+        "projectId": "4eaf3827-5ad6-42aa-80f4-aa0cd5d973dd"
+      },
+      "router": {
+        "origin": false
       }
     },
     "description": "A money management and recap application",
@@ -51,6 +54,7 @@
     "runtimeVersion": {
       "policy": "sdkVersion"
     },
-    "assetBundlePatterns": ["**/*"]
+    "assetBundlePatterns": ["**/*"],
+    "owner": "dickymr_"
   }
 }
