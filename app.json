@@ -10,16 +10,23 @@
     "splash": {
       "image": "./assets/images/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#ffffff",
+      "hideExponentText": true
     },
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "buildNumber": "1",
+      "bundleIdentifier": "com.dickymr.moneyrecap",
+      "minimalVersion": "13.0"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.dickymr.moneyrecap",
+      "versionCode": 1,
+      "minSdkVersion": 21
     },
     "web": {
       "bundler": "metro",
@@ -29,6 +36,21 @@
     "plugins": ["expo-router"],
     "experiments": {
       "typedRoutes": true
-    }
+    },
+    "extra": {
+      "eas": {
+        "projectId": "17372618-45d2-43ae-97b6-30697d00247f"
+      }
+    },
+    "description": "A money management and recap application",
+    "privacy": "unlisted",
+    "updates": {
+      "fallbackToCacheTimeout": 0,
+      "url": "https://u.expo.dev/17372618-45d2-43ae-97b6-30697d00247f"
+    },
+    "runtimeVersion": {
+      "policy": "sdkVersion"
+    },
+    "assetBundlePatterns": ["**/*"]
   }
 }
